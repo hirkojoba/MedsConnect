@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MedsConnect.ViewModels"
+             xmlns:models="clr-namespace:MedsConnect.Models"
+             x:Class="MedsConnect.Views.CaregiversPage"
+             x:DataType="viewmodels:CaregiversViewModel"
+             Title="Caregivers">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="15">
+
+            <!-- Add Caregiver Button -->
+            <Button Text="{Binding ShowAddCaregiverForm, Converter={StaticResource BoolToAddCaregiverTextConverter}}"
+                    Command="{Binding ToggleAddFormCommand}"
+                    BackgroundColor="{StaticResource Primary}"/>
+
+            <!-- Add Caregiver Form -->
+            <Frame IsVisible="{Binding ShowAddCaregiverForm}" Padding="15" CornerRadius="10" HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Add New Caregiver" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="Caregiver's Email" Text="{Binding CaregiverEmail}" Keyboard="Email"/>
+                    <Picker ItemsSource="{Binding RelationshipTypes}" SelectedItem="{Binding Relationship}" Title="Relationship"/>
+                    <Button Text="Send Request" Command="{Binding SendRequestCommand}" BackgroundColor="{StaticResource Secondary}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Pending Requests -->
+            <Label Text="Pending Requests" FontSize="20" FontAttributes="Bold" Margin="0,10,0,0"
+                   IsVisible="{Binding PendingRequests.Count, Converter={StaticResource IntToBoolConverter}}"/>
+
+            <CollectionView ItemsSource="{Binding PendingRequests}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:CaregiverRelationship">
+                        <Frame Padding="15" Margin="0,5" CornerRadius="10" HasShadow="True" BorderColor="Orange">
+                            <Grid RowDefinitions="Auto,Auto,Auto">
+                                <Label Grid.Row="0"
+                                       Text="{Binding Caregiver.Email, StringFormat='From: {0}'}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"/>
+                                <Label Grid.Row="1"
+                                       Text="{Binding Relationship}"
+                                       FontSize="14"
+                                       Opacity="0.8"/>
+                                <Grid Grid.Row="2" ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,10,0,0">
+                                    <Button Grid.Column="0"
+                                            Text="Approve"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CaregiversViewModel}}, Path=ApproveRequestCommand}"
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="Green"/>
+                                    <Button Grid.Column="1"
+                                            Text="Reject"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CaregiversViewModel}}, Path=RejectRequestCommand}"
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="Red"/>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- My Caregivers -->
+            <Label Text="My Caregivers" FontSize="20" FontAttributes="Bold" Margin="0,20,0,0"/>
+
+            <CollectionView ItemsSource="{Binding MyCaregivers}"
+                          EmptyView="No caregivers added yet.">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:CaregiverRelationship">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Remove"
+                                             BackgroundColor="Red"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CaregiversViewModel}}, Path=RemoveCaregiverCommand}"
+                                             CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Frame Padding="15" Margin="0,5" CornerRadius="10" HasShadow="True">
+                                <Grid RowDefinitions="Auto,Auto,Auto">
+                                    <Label Grid.Row="0"
+                                           Text="{Binding Caregiver.FirstName, StringFormat='{0} {1}'}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Grid.Row="1"
+                                           Text="{Binding Caregiver.Email}"
+                                           FontSize="14"
+                                           Opacity="0.8"/>
+                                    <Label Grid.Row="2"
+                                           Text="{Binding Relationship}"
+                                           FontSize="12"
+                                           Opacity="0.7"/>
+                                </Grid>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Patients I Care For -->
+            <Label Text="Patients I Care For" FontSize="20" FontAttributes="Bold" Margin="0,20,0,0"
+                   IsVisible="{Binding MyPatients.Count, Converter={StaticResource IntToBoolConverter}}"/>
+
+            <CollectionView ItemsSource="{Binding MyPatients}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:CaregiverRelationship">
+                        <Frame Padding="15" Margin="0,5" CornerRadius="10" HasShadow="True" BorderColor="{StaticResource Secondary}">
+                            <Grid RowDefinitions="Auto,Auto,Auto">
+                                <Label Grid.Row="0"
+                                       Text="{Binding Patient.FirstName, StringFormat='{0} {1}'}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"/>
+                                <Label Grid.Row="1"
+                                       Text="{Binding Patient.Email}"
+                                       FontSize="14"
+                                       Opacity="0.8"/>
+                                <Label Grid.Row="2"
+                                       Text="{Binding Relationship}"
+                                       FontSize="12"
+                                       Opacity="0.7"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

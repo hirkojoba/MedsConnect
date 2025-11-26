@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MedsConnect.ViewModels"
+             xmlns:models="clr-namespace:MedsConnect.Models"
+             x:Class="MedsConnect.Views.HistoryPage"
+             x:DataType="viewmodels:HistoryViewModel"
+             Title="History">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Date Selector -->
+        <Frame Grid.Row="0" Padding="15" Margin="10" CornerRadius="10" HasShadow="True">
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+
+                <Button Grid.Column="0"
+                        Text="◀"
+                        Command="{Binding PreviousDayCommand}"
+                        WidthRequest="50"
+                        BackgroundColor="{StaticResource Primary}"/>
+
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="{Binding SelectedDate, StringFormat='{0:MMMM dd, yyyy}'}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+                    <Button Text="Today"
+                            Command="{Binding TodayCommand}"
+                            BackgroundColor="Transparent"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="12"
+                            Padding="0"
+                            Margin="0,-10,0,0"/>
+                </VerticalStackLayout>
+
+                <Button Grid.Column="2"
+                        Text="▶"
+                        Command="{Binding NextDayCommand}"
+                        WidthRequest="50"
+                        BackgroundColor="{StaticResource Primary}"/>
+
+            </Grid>
+        </Frame>
+
+        <!-- History List -->
+        <RefreshView Grid.Row="1" Command="{Binding LoadHistoryCommand}" IsRefreshing="{Binding IsBusy}">
+            <CollectionView ItemsSource="{Binding Logs}"
+                          EmptyView="No medication logs for this date."
+                          Margin="10,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:MedicationLog">
+                        <Frame Padding="15" Margin="0,5" CornerRadius="10" HasShadow="True">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto">
+
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding Medication.Name}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"/>
+
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Status}"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="{Binding Status, Converter={StaticResource MedicationStatusToColorConverter}}"
+                                       VerticalOptions="Center"/>
+
+                                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                       Text="{Binding Medication.Dosage, StringFormat='Dosage: {0} {1}'}"
+                                       FontSize="14"
+                                       Opacity="0.8"/>
+
+                                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                       Text="{Binding ScheduledDateTime, StringFormat='Scheduled: {0:h:mm tt}'}"
+                                       FontSize="12"
+                                       Opacity="0.7"/>
+
+                                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                                       Text="{Binding TakenDateTime, StringFormat='Taken at: {0:h:mm tt}'}"
+                                       FontSize="12"
+                                       Opacity="0.7"
+                                       IsVisible="{Binding TakenDateTime, Converter={StaticResource NullToBoolConverter}}"/>
+
+                                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                                       Text="{Binding Notes, StringFormat='Notes: {0}'}"
+                                       FontSize="12"
+                                       Opacity="0.6"
+                                       IsVisible="{Binding Notes, Converter={StaticResource StringToBoolConverter}}"
+                                       Margin="0,5,0,0"/>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
+
+</ContentPage>

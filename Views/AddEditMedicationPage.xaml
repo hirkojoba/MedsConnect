@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MedsConnect.ViewModels"
+             x:Class="MedsConnect.Views.AddEditMedicationPage"
+             x:DataType="viewmodels:AddEditMedicationViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Medication Name" FontSize="14" FontAttributes="Bold"/>
+            <Entry Text="{Binding Name}" Placeholder="e.g., Aspirin"/>
+
+            <Label Text="Description (Optional)" FontSize="14" FontAttributes="Bold"/>
+            <Editor Text="{Binding Description}" Placeholder="Add notes about this medication" HeightRequest="80"/>
+
+            <Label Text="Dosage" FontSize="14" FontAttributes="Bold"/>
+            <Grid ColumnDefinitions="2*,*" ColumnSpacing="10">
+                <Entry Grid.Column="0" Text="{Binding Dosage}" Placeholder="e.g., 500" Keyboard="Numeric"/>
+                <Picker Grid.Column="1" ItemsSource="{Binding Units}" SelectedItem="{Binding Unit}"/>
+            </Grid>
+
+            <Label Text="Frequency" FontSize="14" FontAttributes="Bold"/>
+            <Picker ItemsSource="{Binding Frequencies}" SelectedItem="{Binding Frequency}"/>
+
+            <Label Text="Scheduled Times" FontSize="14" FontAttributes="Bold"/>
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <TimePicker Grid.Column="0" Time="{Binding SelectedTime}"/>
+                <Button Grid.Column="1" Text="Add" Command="{Binding AddTimeCommand}" WidthRequest="80"/>
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding ScheduledTimes}" EmptyView="No times scheduled">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="x:TimeSpan">
+                        <Frame Padding="10" Margin="0,2" CornerRadius="8" HasShadow="False" BorderColor="{StaticResource Primary}">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Grid.Column="0" Text="{Binding ., Converter={StaticResource TimeSpanToStringConverter}}" VerticalOptions="Center"/>
+                                <Button Grid.Column="1"
+                                      Text="Remove"
+                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:AddEditMedicationViewModel}}, Path=RemoveTimeCommand}"
+                                      CommandParameter="{Binding .}"
+                                      BackgroundColor="Red"
+                                      TextColor="White"
+                                      WidthRequest="80"
+                                      HeightRequest="35"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Start Date" FontSize="14" FontAttributes="Bold" Margin="0,10,0,0"/>
+            <DatePicker Date="{Binding StartDate}" Format="MMM dd, yyyy"/>
+
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox IsChecked="{Binding HasEndDate}"/>
+                <Label Text="Set End Date" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <DatePicker Date="{Binding EndDate}" Format="MMM dd, yyyy" IsVisible="{Binding HasEndDate}"/>
+
+            <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                <CheckBox IsChecked="{Binding ReminderEnabled}"/>
+                <Label Text="Enable Reminders" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <Label Text="Reminder (minutes before)" FontSize="14" FontAttributes="Bold" IsVisible="{Binding ReminderEnabled}"/>
+            <Picker ItemsSource="{Binding ReminderOptions}"
+                    SelectedItem="{Binding ReminderMinutesBefore}"
+                    IsVisible="{Binding ReminderEnabled}"/>
+
+            <!-- Reminder Summary -->
+            <Frame BackgroundColor="{StaticResource Primary}"
+                   Padding="15"
+                   CornerRadius="10"
+                   HasShadow="True"
+                   IsVisible="{Binding ReminderEnabled}"
+                   Margin="0,10,0,0">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="📱 Reminder Summary"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+                    <Label Text="{Binding ReminderSummary}"
+                           TextColor="White"
+                           FontSize="14"
+                           LineBreakMode="WordWrap"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox IsChecked="{Binding IsActive}"/>
+                <Label Text="Active" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <Label Text="Notes (Optional)" FontSize="14" FontAttributes="Bold"/>
+            <Editor Text="{Binding Notes}" Placeholder="Additional notes" HeightRequest="100"/>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,20,0,0">
+                <Button Grid.Column="0"
+                        Text="Cancel"
+                        Command="{Binding CancelCommand}"
+                        BackgroundColor="Gray"/>
+                <Button Grid.Column="1"
+                        Text="Save"
+                        Command="{Binding SaveCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+            </Grid>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                             IsVisible="{Binding IsBusy}"
+                             Color="{StaticResource Primary}"
+                             HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

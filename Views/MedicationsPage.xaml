@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MedsConnect.ViewModels"
+             xmlns:models="clr-namespace:MedsConnect.Models"
+             x:Class="MedsConnect.Views.MedicationsPage"
+             x:DataType="viewmodels:MedicationsViewModel"
+             Title="My Medications">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Filter and Add Button -->
+        <Grid Grid.Row="0" Padding="15" ColumnDefinitions="*,Auto">
+            <Button Grid.Column="0"
+                    Text="{Binding ShowActiveOnly, Converter={StaticResource BoolToFilterTextConverter}}"
+                    Command="{Binding ToggleFilterCommand}"
+                    BackgroundColor="{StaticResource Secondary}"
+                    HorizontalOptions="Start"/>
+
+            <Button Grid.Column="1"
+                    Text="+ Add"
+                    Command="{Binding AddMedicationCommand}"
+                    BackgroundColor="{StaticResource Primary}"/>
+        </Grid>
+
+        <!-- Medications List -->
+        <RefreshView Grid.Row="1" Command="{Binding LoadMedicationsCommand}" IsRefreshing="{Binding IsBusy}">
+            <CollectionView ItemsSource="{Binding Medications}"
+                          EmptyView="No medications found. Tap '+ Add' to create one.">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Medication">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                                             BackgroundColor="Red"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MedicationsViewModel}}, Path=DeleteMedicationCommand}"
+                                             CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Frame Padding="15" Margin="10,5" CornerRadius="10" HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MedicationsViewModel}}, Path=EditMedicationCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+
+                                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto">
+
+                                    <Label Grid.Row="0" Grid.Column="0"
+                                           Text="{Binding Name}"
+                                           FontSize="20"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Grid.Row="0" Grid.Column="1"
+                                           Text="{Binding IsActive, Converter={StaticResource BoolToActiveStatusConverter}}"
+                                           FontSize="12"
+                                           VerticalOptions="Start"
+                                           Padding="8,4"
+                                           BackgroundColor="{Binding IsActive, Converter={StaticResource BoolToActiveColorConverter}}"
+                                           TextColor="White"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                           Text="{Binding Dosage, StringFormat='{0} {1}'}"
+                                           FontSize="16"
+                                           Opacity="0.8"/>
+
+                                    <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                           Text="{Binding Frequency}"
+                                           FontSize="14"
+                                           Opacity="0.7"/>
+
+                                    <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                                           Text="{Binding ScheduledTimes, Converter={StaticResource TimeSpanListToStringConverter}}"
+                                           FontSize="12"
+                                           Opacity="0.6"
+                                           Margin="0,5,0,0"/>
+
+                                </Grid>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
+
+</ContentPage>

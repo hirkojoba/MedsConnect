@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MedsConnect.ViewModels"
+             x:Class="MedsConnect.Views.LoginPage"
+             x:DataType="viewmodels:LoginViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource Primary}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+
+            <Label Text="MedsConnect"
+                   FontSize="48"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   Margin="0,0,0,30"/>
+
+            <Label Text="Track your medications with ease"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   Opacity="0.8"
+                   Margin="0,0,0,40"/>
+
+            <Frame BackgroundColor="White" Padding="0" HasShadow="True" CornerRadius="10">
+                <VerticalStackLayout Padding="20" Spacing="15">
+
+                    <Label Text="Login to Your Account"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,10"/>
+
+                    <Entry Placeholder="Email or Username"
+                           Text="{Binding EmailOrUsername}"
+                           Keyboard="Email"
+                           ClearButtonVisibility="WhileEditing"/>
+
+                    <Entry Placeholder="Password"
+                           Text="{Binding Password}"
+                           IsPassword="True"
+                           ClearButtonVisibility="WhileEditing"/>
+
+                    <Label Text="{Binding ErrorMessage}"
+                           TextColor="Red"
+                           IsVisible="{Binding ErrorMessage, Converter={StaticResource StringToBoolConverter}}"
+                           FontSize="12"/>
+
+                    <Button Text="Login"
+                            Command="{Binding LoginCommand}"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            CornerRadius="8"
+                            Margin="0,10,0,0"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                     IsVisible="{Binding IsBusy}"
+                                     Color="{StaticResource Primary}"
+                                     HorizontalOptions="Center"/>
+
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="0,20,0,0">
+                        <Label Text="Don't have an account?" FontSize="14"/>
+                        <Label Text="Register"
+                               FontSize="14"
+                               TextColor="{StaticResource Primary}"
+                               FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToRegisterCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

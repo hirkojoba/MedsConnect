@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MedsConnect.ViewModels"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="MedsConnect.Views.RegisterPage"
+             x:DataType="viewmodels:RegisterViewModel"
+             Title="Register"
+             BackgroundColor="{StaticResource Primary}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+
+            <Label Text="Create Account"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   Margin="0,20,0,20"/>
+
+            <Frame BackgroundColor="White" Padding="0" HasShadow="True" CornerRadius="10">
+                <VerticalStackLayout Padding="20" Spacing="15">
+
+                    <Entry Placeholder="Username"
+                           Text="{Binding Username}"
+                           ClearButtonVisibility="WhileEditing"/>
+
+                    <Entry Placeholder="Email"
+                           Text="{Binding Email}"
+                           Keyboard="Email"
+                           ClearButtonVisibility="WhileEditing"/>
+
+                    <Entry Placeholder="First Name"
+                           Text="{Binding FirstName}"
+                           ClearButtonVisibility="WhileEditing"/>
+
+                    <Entry Placeholder="Last Name"
+                           Text="{Binding LastName}"
+                           ClearButtonVisibility="WhileEditing"/>
+
+                    <DatePicker Date="{Binding DateOfBirth}"
+                                Format="MMM dd, yyyy"
+                                MaximumDate="{x:Static sys:DateTime.Now}"/>
+
+                    <Label Text="I am a:" FontSize="14" TextColor="{StaticResource Gray900}"/>
+                    <Picker Title="Select Role"
+                            ItemsSource="{Binding UserRoles}"
+                            SelectedItem="{Binding SelectedRole}"
+                            BackgroundColor="{StaticResource Gray100}"
+                            TextColor="{StaticResource Gray900}"/>
+
+                    <Entry Placeholder="Password"
+                           Text="{Binding Password}"
+                           IsPassword="True"
+                           ClearButtonVisibility="WhileEditing"/>
+
+                    <Entry Placeholder="Confirm Password"
+                           Text="{Binding ConfirmPassword}"
+                           IsPassword="True"
+                           ClearButtonVisibility="WhileEditing"/>
+
+                    <Label Text="{Binding ErrorMessage}"
+                           TextColor="Red"
+                           IsVisible="{Binding ErrorMessage, Converter={StaticResource StringToBoolConverter}}"
+                           FontSize="12"/>
+
+                    <Button Text="Register"
+                            Command="{Binding RegisterCommand}"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            CornerRadius="8"
+                            Margin="0,10,0,0"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                     IsVisible="{Binding IsBusy}"
+                                     Color="{StaticResource Primary}"
+                                     HorizontalOptions="Center"/>
+
+                    <Button Text="Back to Login"
+                            Command="{Binding GoBackCommand}"
+                            BackgroundColor="Transparent"
+                            TextColor="{StaticResource Primary}"
+                            Margin="0,10,0,0"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

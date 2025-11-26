@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MedsConnect.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MedsConnect.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <!-- Login Flow -->
+    <ShellContent
+        Route="LoginPage"
+        ContentTemplate="{DataTemplate views:LoginPage}" />
+
+    <!-- Main App -->
+    <TabBar Route="MainTabs">
+        <ShellContent
+            Title="Dashboard"
+            Icon="home.png"
+            Route="DashboardPage"
+            ContentTemplate="{DataTemplate views:DashboardPage}" />
+
+        <ShellContent
+            Title="Medications"
+            Icon="pill.png"
+            Route="MedicationsPage"
+            ContentTemplate="{DataTemplate views:MedicationsPage}" />
+
+        <ShellContent
+            Title="History"
+            Icon="history.png"
+            Route="HistoryPage"
+            ContentTemplate="{DataTemplate views:HistoryPage}" />
+
+        <ShellContent
+            Title="Caregivers/Patients"
+            Icon="people.png"
+            Route="CaregiversPage"
+            ContentTemplate="{DataTemplate views:CaregiversPage}" />
+    </TabBar>
+
+</Shell>
