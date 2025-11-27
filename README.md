@@ -47,13 +47,13 @@ A comprehensive .NET MAUI cross-platform medication tracking application that he
   <img src="Screenshots/login.png" width="250" alt="Login Screen"/>
 </p>
 
-**User Authentication:** Secure login screen with email and password authentication. Implements password hashing with SHA256 and uses MAUI SecureStorage for credential persistence across app sessions.
+**User Authentication:** Secure login screen with email and password authentication.
 
 <p align="center">
   <img src="Screenshots/notification permission.png" width="250" alt="Notification Permission"/>
 </p>
 
-**Notification Permissions:** On first use, the app requests notification permissions to enable medication reminders. Handles Android 13+ runtime permissions with proper fallback handling.
+**Notification Permissions:** On first use, the app requests notification permissions to enable medication reminders.
 
 ---
 
@@ -69,7 +69,7 @@ A comprehensive .NET MAUI cross-platform medication tracking application that he
   <img src="Screenshots/medication list.png" width="250" alt="Medication List"/>
 </p>
 
-**Medication Management:** Complete list of all active medications with dosage information, frequency, and scheduled times. Supports filtering between active and inactive medications. Each medication card displays key information at a glance.
+**Medication Management:** Complete list of all active medications with dosage information, frequency, medication description, notes and scheduled times. Supports filtering between active and inactive medications. Each medication card displays key information at a glance.
 
 <p align="center">
   <img src="Screenshots/viewing inactive medications as well.png" width="250" alt="Active & Inactive Medications"/>
@@ -85,7 +85,7 @@ A comprehensive .NET MAUI cross-platform medication tracking application that he
   <img src="Screenshots/adding medication pt 1.png" width="250" alt="Adding Medication - Part 1"/>
 </p>
 
-**Add Medication - Basic Info:** Comprehensive form for adding new medications with fields for name, dosage, unit, frequency, and detailed notes. Input validation ensures data integrity.
+**Add Medication - Basic Info:** Comprehensive form for adding new medications with fields for name, description, dosage, unit, frequency, and detailed notes. Input validation ensures data integrity.
 
 <p align="center">
   <img src="Screenshots/adding medication pt 2.png" width="250" alt="Adding Medication - Part 2"/>
@@ -107,7 +107,7 @@ A comprehensive .NET MAUI cross-platform medication tracking application that he
   <img src="Screenshots/history.png" width="250" alt="Medication History"/>
 </p>
 
-**Medication History:** Calendar-based view of medication logs with date filtering. Shows detailed history of all medications taken, missed, or skipped with timestamps. Users can add notes to individual log entries for tracking side effects or other observations.
+**Medication History:** Calendar-based view of medication logs with date filtering. Shows detailed history of all medications taken, missed, or skipped with timestamps as well as logging who marked it, whether it be the patient or caregiver. Users can add notes to individual log entries for tracking side effects or other observations.
 
 ---
 
@@ -141,13 +141,13 @@ A comprehensive .NET MAUI cross-platform medication tracking application that he
   <img src="Screenshots/caregiver viewing patient's data.png" width="250" alt="Caregiver Viewing Patient Data"/>
 </p>
 
-**Caregiver - View Patient Dashboard:** Caregivers can view their patients' medication schedules and adherence statistics based on granted permissions. This enables remote monitoring and support for medication adherence.
+**Caregiver - View Patient Dashboard:** Caregivers can view their patients' medication schedules and adherence statistics based on granted permissions. This enables remote monitoring and support for medication adherence. There is also a "back to my view" button at the top-left corner so that the caregiver can also view their own dashboard and etc if they also track their own medication.
 
 <p align="center">
   <img src="Screenshots/caregiver marks patient medication as taken.png" width="250" alt="Caregiver Marking Medication as Taken"/>
 </p>
 
-**Caregiver - Mark Medications Taken:** With appropriate permissions, caregivers can mark medications as taken on behalf of their patients. Useful for elderly patients, children, or those needing assistance with medication management.
+**Caregiver - Mark Medications Taken:** With appropriate permissions, caregivers can mark medications as taken on behalf of their patients and the caregiver's name will be marked under that medication's history. Useful for elderly patients, children, or those needing assistance with medication management.
 
 ## Download
 
