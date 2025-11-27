@@ -42,42 +42,112 @@ A comprehensive .NET MAUI cross-platform medication tracking application that he
 ## Screenshots
 
 ### Authentication & Onboarding
+
 <p align="center">
   <img src="Screenshots/login.png" width="250" alt="Login Screen"/>
+</p>
+
+**User Authentication:** Secure login screen with email and password authentication. Implements password hashing with SHA256 and uses MAUI SecureStorage for credential persistence across app sessions.
+
+<p align="center">
   <img src="Screenshots/notification permission.png" width="250" alt="Notification Permission"/>
 </p>
 
+**Notification Permissions:** On first use, the app requests notification permissions to enable medication reminders. Handles Android 13+ runtime permissions with proper fallback handling.
+
+---
+
 ### Dashboard & Medication Tracking
+
 <p align="center">
   <img src="Screenshots/dashboard.png" width="250" alt="Dashboard"/>
+</p>
+
+**Daily Dashboard:** Real-time view of today's medication schedule with color-coded status indicators. Displays adherence statistics including total medications, taken count, pending count, and 30-day rolling adherence percentage. Users can quickly mark medications as taken with a single tap.
+
+<p align="center">
   <img src="Screenshots/medication list.png" width="250" alt="Medication List"/>
+</p>
+
+**Medication Management:** Complete list of all active medications with dosage information, frequency, and scheduled times. Supports filtering between active and inactive medications. Each medication card displays key information at a glance.
+
+<p align="center">
   <img src="Screenshots/viewing inactive medications as well.png" width="250" alt="Active & Inactive Medications"/>
 </p>
 
+**Active & Inactive Medications:** Toggle view showing both active and inactive medications. Users can easily manage their complete medication history and reactivate previous medications as needed.
+
+---
+
 ### Medication Management
+
 <p align="center">
   <img src="Screenshots/adding medication pt 1.png" width="250" alt="Adding Medication - Part 1"/>
+</p>
+
+**Add Medication - Basic Info:** Comprehensive form for adding new medications with fields for name, dosage, unit, frequency, and detailed notes. Input validation ensures data integrity.
+
+<p align="center">
   <img src="Screenshots/adding medication pt 2.png" width="250" alt="Adding Medication - Part 2"/>
+</p>
+
+**Add Medication - Schedule & Reminders:** Set multiple scheduled times per day using time pickers. Configure reminder settings including reminder offset time (default 15 minutes before). Supports start and end dates for temporary medications.
+
+<p align="center">
   <img src="Screenshots/medication reminder notification.png" width="250" alt="Medication Reminder Notification"/>
 </p>
 
+**Local Push Notifications:** System-level notifications remind users to take medications at scheduled times. Notifications include medication name and dosage. Tapping opens the app directly to the medication details.
+
+---
+
 ### History & Analytics
+
 <p align="center">
   <img src="Screenshots/history.png" width="250" alt="Medication History"/>
 </p>
 
+**Medication History:** Calendar-based view of medication logs with date filtering. Shows detailed history of all medications taken, missed, or skipped with timestamps. Users can add notes to individual log entries for tracking side effects or other observations.
+
+---
+
 ### Caregiver Features
+
 <p align="center">
   <img src="Screenshots/caregiver request.png" width="250" alt="Patient Sending Caregiver Request"/>
+</p>
+
+**Patient - Send Caregiver Request:** Patients can add caregivers by email address and specify the relationship type (family member, healthcare provider, friend). Configurable permissions allow patients to control what data caregivers can access.
+
+<p align="center">
   <img src="Screenshots/caregiver receiving request.png" width="250" alt="Caregiver Receiving Request"/>
+</p>
+
+**Caregiver - Receive Request:** Caregivers receive and can approve or reject patient requests. The approval system ensures both parties consent to the relationship before data sharing begins.
+
+<p align="center">
   <img src="Screenshots/patient viewing caregiver list.png" width="250" alt="Patient's Caregiver List"/>
 </p>
 
+**Patient - Caregiver List:** Patients can view all their approved caregivers with relationship details and permission levels. Options to modify permissions or remove caregivers maintain patient control over their data.
+
 <p align="center">
   <img src="Screenshots/caregiver patient list.png" width="250" alt="Caregiver's Patient List"/>
+</p>
+
+**Caregiver - Patient List:** Caregivers can manage multiple patients from a single interface. Shows list of all patients who have granted access, with quick navigation to each patient's medication data.
+
+<p align="center">
   <img src="Screenshots/caregiver viewing patient's data.png" width="250" alt="Caregiver Viewing Patient Data"/>
+</p>
+
+**Caregiver - View Patient Dashboard:** Caregivers can view their patients' medication schedules and adherence statistics based on granted permissions. This enables remote monitoring and support for medication adherence.
+
+<p align="center">
   <img src="Screenshots/caregiver marks patient medication as taken.png" width="250" alt="Caregiver Marking Medication as Taken"/>
 </p>
+
+**Caregiver - Mark Medications Taken:** With appropriate permissions, caregivers can mark medications as taken on behalf of their patients. Useful for elderly patients, children, or those needing assistance with medication management.
 
 ## Download
 
