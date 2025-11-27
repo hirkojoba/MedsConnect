@@ -141,7 +141,7 @@ A comprehensive .NET MAUI cross-platform medication tracking application that he
   <img src="Screenshots/caregiver viewing patient's data.png" width="250" alt="Caregiver Viewing Patient Data"/>
 </p>
 
-**Caregiver - View Patient Dashboard:** Caregivers can view their patients' medication schedules and adherence statistics based on granted permissions. This enables remote monitoring and support for medication adherence. There is also a "back to my view" button at the top-left corner so that the caregiver can also view their own dashboard and etc if they also track their own medication.
+**Caregiver - View Patient Dashboard:** Caregivers can view their patients' medication schedules and adherence statistics based on granted permissions. This enables remote monitoring and support for medication adherence. There is also a "back to my view" button at the top so that the caregiver can also view their own dashboard and etc if they track their own medication.
 
 <p align="center">
   <img src="Screenshots/caregiver marks patient medication as taken.png" width="250" alt="Caregiver Marking Medication as Taken"/>
