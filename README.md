@@ -215,14 +215,3 @@ Install the APK on your Android device to try out MedsConnect!
 ### Windows
 - Minimum version: Windows 11 (Build 22000)
 - Notification support via Windows Notification Service
-
-## Security Considerations
-
-- Passwords are hashed using SHA256 (consider upgrading to bcrypt/Argon2 for production)
-- Credentials stored in platform-specific secure storage
-- SQLite database is local and not encrypted (consider encryption for sensitive medical data)
-- No server-side authentication (local-only app)
-
----
-
-**Built with .NET MAUI** | **Version 1.0.0**
