@@ -157,32 +157,13 @@ Install the APK on your Android device to try out MedsConnect!
 
 
 ### Technology Stack
-
-**Core Technologies:**
-- **C#** - Primary programming language
-- **.NET 9.0** - Latest .NET framework
-- **.NET MAUI** - Cross-platform UI framework for Android, iOS, Windows, and macOS
-- **XAML** - Declarative markup language for UI design
-
-**Data & Storage:**
-- **Entity Framework Core 9.0** - Object-relational mapper (ORM) for database management
-- **SQLite** - Lightweight embedded database for local data storage
-- **MAUI SecureStorage** - Platform-specific secure credential storage
-
-**Architecture & Patterns:**
-- **MVVM (Model-View-ViewModel)** - Design pattern for separation of concerns
-- **Dependency Injection** - Built-in .NET DI container for service management
-- **Async/Await** - Asynchronous programming for responsive UI
-
-**UI & UX:**
-- **CommunityToolkit.Maui 10.0** - Enhanced UI controls and behaviors
-- **CommunityToolkit.Mvvm 8.3.2** - MVVM helpers, RelayCommand, and ObservableProperty
-- **Custom XAML Converters** - 13 value converters for data binding
-
-**Features:**
-- **Plugin.LocalNotification 11.1.4** - Cross-platform local push notifications
-- **SHA256 Password Hashing** - Secure password storage
-- **JSON Serialization** - For complex type storage (medication schedules)
+- **.NET 9.0**
+- **.NET MAUI** - Cross-platform framework
+- **Entity Framework Core 9.0** - ORM for database management
+- **SQLite** - Local database storage
+- **CommunityToolkit.Maui 10.0** - Enhanced UI controls
+- **CommunityToolkit.Mvvm** - MVVM helpers and commands
+- **Plugin.LocalNotification** - Local push notifications
 
 
 ## Usage Guide
