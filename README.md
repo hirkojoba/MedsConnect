@@ -39,6 +39,52 @@ A comprehensive .NET MAUI cross-platform medication tracking application that he
 - View patients you care for
 - Track multiple patients' medication adherence
 
+## Screenshots
+
+### Authentication & Onboarding
+<p align="center">
+  <img src="Screenshots/login.png" width="250" alt="Login Screen"/>
+  <img src="Screenshots/notification permission.png" width="250" alt="Notification Permission"/>
+</p>
+
+### Dashboard & Medication Tracking
+<p align="center">
+  <img src="Screenshots/dashboard.png" width="250" alt="Dashboard"/>
+  <img src="Screenshots/medication list.png" width="250" alt="Medication List"/>
+  <img src="Screenshots/viewing inactive medications as well.png" width="250" alt="Active & Inactive Medications"/>
+</p>
+
+### Medication Management
+<p align="center">
+  <img src="Screenshots/adding medication pt 1.png" width="250" alt="Adding Medication - Part 1"/>
+  <img src="Screenshots/adding medication pt 2.png" width="250" alt="Adding Medication - Part 2"/>
+  <img src="Screenshots/medication reminder notification.png" width="250" alt="Medication Reminder Notification"/>
+</p>
+
+### History & Analytics
+<p align="center">
+  <img src="Screenshots/history.png" width="250" alt="Medication History"/>
+</p>
+
+### Caregiver Features
+<p align="center">
+  <img src="Screenshots/caregiver request.png" width="250" alt="Patient Sending Caregiver Request"/>
+  <img src="Screenshots/caregiver receiving request.png" width="250" alt="Caregiver Receiving Request"/>
+  <img src="Screenshots/patient viewing caregiver list.png" width="250" alt="Patient's Caregiver List"/>
+</p>
+
+<p align="center">
+  <img src="Screenshots/caregiver patient list.png" width="250" alt="Caregiver's Patient List"/>
+  <img src="Screenshots/caregiver viewing patient's data.png" width="250" alt="Caregiver Viewing Patient Data"/>
+  <img src="Screenshots/caregiver marks patient medication as taken.png" width="250" alt="Caregiver Marking Medication as Taken"/>
+</p>
+
+## Download
+
+**[Download Android APK (v1.0.0)](https://github.com/hirkojoba/MedsConnect/releases/latest)**
+
+Install the APK on your Android device to try out MedsConnect!
+
 ## Architecture
 
 ### Technology Stack
