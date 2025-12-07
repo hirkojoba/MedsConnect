@@ -157,13 +157,11 @@ Install the APK on your Android device to try out MedsConnect!
 
 
 ### Technology Stack
-- **.NET 9.0**
-- **.NET MAUI** - Cross-platform framework
-- **Entity Framework Core 9.0** - ORM for database management
-- **SQLite** - Local database storage
-- **CommunityToolkit.Maui 10.0** - Enhanced UI controls
-- **CommunityToolkit.Mvvm** - MVVM helpers and commands
-- **Plugin.LocalNotification** - Local push notifications
+- **Languages:** C#, XAML  
+- **Framework:** .NET MAUI  
+- **Architecture:** MVVM  
+- **Database:** SQLite, Entity Framework Core  
+- **Deployment:** Android APK
 
 
 ## Usage Guide
